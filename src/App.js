@@ -32,7 +32,7 @@ class App extends Component {
       input: '', 
       imageUrl: '',
       box: {}, 
-      route: 'signin'
+      route: 'signin'  // what component should appear first 
     }
   } 
 
@@ -66,8 +66,8 @@ class App extends Component {
     .catch(err => console.log(err))
   } 
 
-  onRouteChange = () => { 
-    this.setState({route: 'home'}); 
+  onRouteChange = (route) => { 
+    this.setState({route: route}); 
   }
 
   render() {
@@ -75,7 +75,7 @@ class App extends Component {
       <div className="App"> 
         <Particles className='particles'
         params={particlesOptions} />
-        <Navigation /> 
+        <Navigation onRouteChange={ this.onRouteChange } /> 
         { this.state.route === 'signin' 
         ? <SignIn onRouteChange={this.onRouteChange} /> 
         : <div>
